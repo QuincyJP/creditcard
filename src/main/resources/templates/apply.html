@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Apply Credit Card</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+padding:30px;
+}
+
+.formbox{
+background:white;
+padding:25px;
+width:400px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+input{
+width:100%;
+padding:8px;
+margin-top:6px;
+margin-bottom:15px;
+}
+
+button{
+background:#1e3d59;
+color:white;
+padding:10px;
+border:none;
+width:100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Credit Card Application</h2>
+
+<div class="formbox">
+
+<form id="applicationForm">
+
+Name<br>
+<input type="text" id="name"><br>
+
+Email<br>
+<input type="text" id="email"><br>
+
+CIBIL Score<br>
+<input type="number" id="cibil"><br>
+
+<button type="submit">Submit Application</button>
+
+</form>
+
+</div>
+
+<script>
+
+document.getElementById("applicationForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+fetch("/applications",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+applicantName:document.getElementById("name").value,
+email:document.getElementById("email").value,
+cibilScore:document.getElementById("cibil").value
+
+})
+
+})
+.then(res=>res.json())
+.then(data=>{
+
+alert("Application Submitted! ID: "+data.id)
+
+})
+
+})
+
+</script>
+
+</body>
+
+</html>

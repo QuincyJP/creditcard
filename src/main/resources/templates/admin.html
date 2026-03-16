@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+}
+
+header{
+background:#1e3d59;
+color:white;
+padding:15px;
+text-align:center;
+}
+
+.container{
+display:flex;
+}
+
+.sidebar{
+width:220px;
+background:#2c3e50;
+height:100vh;
+}
+
+.sidebar a{
+display:block;
+padding:15px;
+color:white;
+text-decoration:none;
+}
+
+.sidebar a:hover{
+background:#34495e;
+}
+
+.content{
+flex:1;
+padding:30px;
+}
+
+table{
+background:white;
+border-collapse:collapse;
+width:100%;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+}
+
+button{
+padding:6px 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Credit Card Applications</h2>
+
+<button onclick="loadApplications()">Load Applications</button>
+
+<table border="1" id="appTable">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>CIBIL</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</table>
+
+<script>
+
+function loadApplications(){
+
+fetch("/applications")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+let table=document.getElementById("appTable");
+
+data.forEach(app=>{
+
+let row=table.insertRow();
+
+row.insertCell(0).innerHTML=app.id;
+row.insertCell(1).innerHTML=app.applicantName;
+row.insertCell(2).innerHTML=app.email;
+row.insertCell(3).innerHTML=app.cibilScore;
+row.insertCell(4).innerHTML=app.status;
+row.insertCell(5).innerHTML="<button onclick='approve("+app.id+")'>Approve</button>";
+
+});
+
+});
+
+}
+
+function approve(id){
+
+fetch("/applications/approve/"+id,{
+method:"POST"
+})
+.then(res=>res.json())
+.then(data=>{
+alert("Application "+data.status);
+location.reload();
+})
+
+}
+
+</script>
+
+</body>
+</html>

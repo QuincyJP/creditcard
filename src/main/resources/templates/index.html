@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Credit Card Processing System</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+}
+
+header{
+background:#1e3d59;
+color:white;
+padding:15px;
+text-align:center;
+}
+
+.container{
+display:flex;
+}
+
+.sidebar{
+width:220px;
+background:#2c3e50;
+height:100vh;
+}
+
+.sidebar a{
+display:block;
+padding:15px;
+color:white;
+text-decoration:none;
+}
+
+.sidebar a:hover{
+background:#34495e;
+}
+
+.content{
+flex:1;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>Credit Card Processing System</h1>
+</header>
+
+<div class="container">
+
+<div class="sidebar">
+
+<a href="/">Dashboard</a>
+<a href="/apply">Apply Credit Card</a>
+<a href="/admin">Admin Approval</a>
+<a href="/transactionsPage">Transactions</a>
+<a href="/billingPage">Billing</a>
+<a href="/architecture">Architecture</a>
+
+</div>
+
+<div class="content">
+
+<div class="card">
+
+<h2>System Overview</h2>
+
+<p>
+This system simulates a complete credit card processing workflow including application, approval, transactions and billing.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Credit Card Workflow</h2>
+
+<p>
+
+Application → Approval → Card Issued → Transaction → Billing → Interest
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
